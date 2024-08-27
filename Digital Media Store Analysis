@@ -1,0 +1,29 @@
+# For this project, I'm querying a database with multiple tables in order to reveal information about a digital media store using SQLite Studio.
+
+# Create a table that shows album titles and associated artist names.
+SELECT Title, Name AS Artist
+FROM albums
+JOIN artists
+ON albums.ArtistId=artists.ArtistId;
+
+# Determine what media type each track is.
+SELECT t.Name AS TrackName, mt.Name AS MediaType
+FROM tracks t
+LEFT JOIN media_types mt
+ON t.MediaTypeId=mt.MediaTypeId;
+
+# Determine what genre each track is.
+SELECT t.Name AS TrackName, g.Name AS Genre
+FROM tracks t
+LEFT JOIN genres g
+ON t.GenreId=g.GenreId;
+
+# Show the average invoice total rounded to two decimal places per billing country.
+SELECT BillingCountry, ROUND(AVG(Total), 2) AS Average
+FROM invoices
+GROUP BY BillingCountry;
+
+# Display sales support agent staff by name.
+SELECT LastName, FirstName
+FROM employees
+WHERE title='Sales Support Agent';
